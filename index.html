@@ -22,6 +22,15 @@
         canvas.style.position = "fixed";
 
         document.body.style.textAlign = "left";
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock("landscape")
+            .then(() => {
+              log.textContent = `Locked\n`;
+            })
+            .catch((error) => {
+              log.textContent += `${error}\n`;
+            });
+        }
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
